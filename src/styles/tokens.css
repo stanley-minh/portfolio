@@ -65,6 +65,7 @@
   --muted: var(--thep); /* 5,2:1 sur --bg */
   --heading: var(--do-li-xi); /* 5,7:1 sur --bg */
   --link: var(--dong); /* 6,0:1 sur --bg */
+  --label: var(--do-li-xi); /* 6,5:1 sur --surface : libellés d'accent (dt des cartes) */
   --rule: var(--bac);
   --rail: var(--thep);
   --rail-hi: var(--bac);
@@ -93,6 +94,7 @@
   --muted: var(--bac); /* 9,1:1 */
   --heading: var(--vang-dat); /* 4,9:1, réservé aux grands titres */
   --link: var(--vang-kim); /* 7,8:1 */
+  --label: var(--vang-kim); /* 6,7:1 sur --surface (--heading n'y fait que 4,2:1) */
   --rule: var(--thep);
   --rail: var(--bac);
   --rail-hi: var(--thep);
