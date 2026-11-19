@@ -56,15 +56,17 @@ export const EXPENSE_TRACKER: Project = {
   caseStudy: {
     need: "Le CCR Toulouse, une église, avait besoin d'un outil de gestion pour suivre ses dépenses et voir, pour chaque personne, si les paiements avaient été effectués ou non. Jusque-là, tout était suivi dans un tableur.",
     choices: [
-      "React pour l'interface.",
-      'Version 1 : Symfony et API Platform.',
-      'Version 2 : PHP MVC natif, sans framework, servi par Nginx.',
-      'Docker pour un environnement identique en local et en ligne.',
+      "React 19 et TypeScript pour l'interface, avec des appels à l'API typés et des classes d'erreur dédiées.",
+      'Version 1 : Symfony, API Platform et une authentification par jeton JWT.',
+      "Version 2 : back-end réécrit en PHP 8.5 natif, en MVC, sans framework ni Composer, pour comprendre ce qui se passe sous le capot d'un framework.",
+      "Une session PHP dans un cookie HttpOnly à la place du JWT : aucun jeton n'est stocké côté JavaScript, une faille XSS ne peut donc pas le voler.",
+      "Les parts de chacun ne sont jamais stockées : l'API les recalcule à partir du montant et du nombre de participants, elles restent donc toujours justes.",
+      'Docker Compose (Nginx, PHP-FPM, MySQL 9.7 LTS) : le même environnement sur chaque machine, lancé en une seule commande.',
     ],
     learned: [
-      "Ce que fait un framework à ma place : en réécrivant le back-end sans Symfony, j'ai codé moi-même le contrôleur frontal, le routeur et l'autoloader PSR-4.",
-      "Sécuriser une authentification : session PHP dans un cookie HttpOnly plutôt qu'un jeton en JavaScript, mots de passe hachés avec bcrypt, et la même réponse que l'e-mail existe ou non.",
-      "Manipuler de l'argent sans erreur d'arrondi : montants stockés en centimes, et partage au centime près par division euclidienne (42,50 € entre 4 personnes : 10,63 + 10,63 + 10,62 + 10,62).",
+      "Ce que fait un framework à ma place : en réécrivant le back-end sans Symfony, j'ai codé moi-même le contrôleur frontal, le routeur et l'autoloader PSR-4.",
+      "Sécuriser une authentification : mots de passe hachés avec bcrypt (72 octets au maximum), et la même réponse, dans le même délai, que l'e-mail existe ou non, pour qu'on ne puisse pas deviner quels comptes existent.",
+      "Manipuler de l'argent sans erreur d'arrondi : montants stockés en centimes, et partage au centime près par division euclidienne (42,50 € entre 4 personnes : 10,63 + 10,63 + 10,62 + 10,62).",
     ],
   },
 };
