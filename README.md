@@ -36,5 +36,4 @@ Voir [docs/architecture.md](docs/architecture.md).
 ## À compléter
 
 - `public/cv.pdf` : le CV téléchargeable
-- `src/data/site.ts` : les deux textes entre crochets de l'étude de cas
-- `src/pages/CaseStudy.tsx` : une capture d'écran du projet
+- `src/pages/CaseStudy.tsx` : une capture d'écran du projet, quand l'application sera en ligne

@@ -7,7 +7,7 @@ interface CaseStudyProps {
   onBack: () => void;
 }
 
-/** L'étude de cas Expense Tracker. Les textes entre crochets sont à compléter dans `data/site.ts`. */
+/** L'étude de cas Expense Tracker. Le contenu est dans `data/site.ts`. */
 export function CaseStudy({ onBack }: CaseStudyProps) {
   const handleBack = (event: MouseEvent<HTMLAnchorElement>) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
@@ -24,9 +24,6 @@ export function CaseStudy({ onBack }: CaseStudyProps) {
         </h1>
         <p className={styles.tagline}>{project.tagline}</p>
 
-        {/* À remplacer par une vraie capture : <img src="…" alt="…" width height /> */}
-        <div className={styles.shot}>[Capture d'écran de l'application]</div>
-
         <h2 className={styles.h2}>Le besoin</h2>
         <p className={styles.p}>{project.caseStudy.need}</p>
 
@@ -38,7 +35,11 @@ export function CaseStudy({ onBack }: CaseStudyProps) {
         </ul>
 
         <h2 className={styles.h2}>Ce que j'ai appris</h2>
-        <p className={styles.p}>{project.caseStudy.learned}</p>
+        <ul className={styles.list}>
+          {project.caseStudy.learned.map((lesson) => (
+            <li key={lesson}>{lesson}</li>
+          ))}
+        </ul>
 
         <div className={styles.footer}>
           <a href={import.meta.env.BASE_URL} className="btn btn--outline" onClick={handleBack}>
