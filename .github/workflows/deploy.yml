@@ -1,0 +1,48 @@
+name: Déploiement GitHub Pages
+
+# QUAND : à chaque push sur main, ou à la main depuis l'onglet Actions
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# DROITS du jeton temporaire que GitHub donne au workflow :
+# le strict minimum (principe du moindre privilège)
+permissions:
+  contents: read # lire le code
+  pages: write # publier sur Pages
+  id-token: write # prouver à Pages que c'est bien ce dépôt qui publie (OIDC)
+
+# Un seul déploiement à la fois : deux pushes rapprochés ne se marchent pas dessus
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # une machine Linux neuve, jetée après le job
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # le lien s'affiche dans l'onglet Actions
+    steps:
+      - uses: actions/checkout@v7 # 1. récupère le code
+
+      - uses: actions/setup-node@v7 # 2. installe Node
+        with:
+          node-version: lts/*
+          cache: npm # met en cache le cache npm entre deux exécutions
+
+      - run: npm ci # 3. installe EXACTEMENT les versions de package-lock.json
+
+      - run: npm run lint # 4. si le lint échoue, on ne déploie pas
+
+      - run: npm run build # 5. tsc + vite build → dist/
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5 # 6. emballe dist/
+        with:
+          path: ./dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v5 # 7. publie

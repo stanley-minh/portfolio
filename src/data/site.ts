@@ -14,8 +14,11 @@ export const CONTACT = {
   email: 'stanleybullet.pro@gmail.com',
   github: 'https://github.com/stanley-minh',
   linkedin: 'https://www.linkedin.com/in/stancte',
-  /** Dépose ton CV dans `public/cv.pdf` : Vite le servira à cette adresse. */
-  cv: '/cv.pdf',
+  /**
+   * `public/cv.pdf`, préfixé par la `base` de Vite (`/portfolio/` en ligne).
+   * Un chemin absolu `/cv.pdf` donnerait une 404 sur GitHub Pages.
+   */
+  cv: `${import.meta.env.BASE_URL}cv.pdf`,
 } as const;
 
 /** Affiche une URL sans « https:// » ni « www. », plus lisible dans un texte. */
