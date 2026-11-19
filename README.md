@@ -81,6 +81,15 @@ Sa source est [.github/assets/og-image.svg](.github/assets/og-image.svg). Après
 
 LinkedIn garde l'ancien aperçu en cache : le rafraîchir avec le [Post Inspector](https://www.linkedin.com/post-inspector/).
 
+## Bannière LinkedIn
+
+[.github/assets/linkedin-banner.svg](.github/assets/linkedin-banner.svg) est la source (1584×396, en français).
+Le texte reste à droite de la photo de profil, qui recouvre le bas à gauche.
+
+```bash
+node scripts/export-linkedin-banner.mjs   # macOS : PNG en français et en anglais dans .github/assets/
+```
+
 ## Structure
 
 Voir [docs/architecture.md](docs/architecture.md).
