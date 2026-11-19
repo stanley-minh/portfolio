@@ -62,6 +62,19 @@ Les chemins vers `public/` passent donc par `import.meta.env.BASE_URL`, jamais p
 [.github/assets/](.github/assets/) contient la bannière en deux variantes (soleil le jour, lune la nuit),
 avec les tracés et les couleurs du hero. GitHub choisit la bonne grâce à la balise `<picture>`.
 
+## Aperçu social
+
+Quand on partage le lien du site (LinkedIn, Slack, Discord…), l'aperçu vient des balises Open Graph
+(`og:*`) de [index.html](index.html) et de l'image `public/og-image.png` (1200×630).
+
+Sa source est [.github/assets/og-image.svg](.github/assets/og-image.svg). Après une modification :
+
+```bash
+./scripts/export-og-image.sh   # macOS uniquement : SVG → PNG 1200×630
+```
+
+LinkedIn garde l'ancien aperçu en cache : le rafraîchir avec le [Post Inspector](https://www.linkedin.com/post-inspector/).
+
 ## Structure
 
 Voir [docs/architecture.md](docs/architecture.md).
