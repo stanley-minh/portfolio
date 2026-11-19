@@ -60,8 +60,8 @@
 }
 
 .facts dt {
-  color: var(--muted);
-  font-weight: 500;
+  color: var(--label);
+  font-weight: 700;
 }
 
 .facts dd {
