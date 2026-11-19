@@ -1,0 +1,13 @@
+.footer {
+  background: var(--do-li-xi);
+  color: var(--suong);
+  font-size: 1rem;
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 24px;
+}

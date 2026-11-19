@@ -1,0 +1,113 @@
+/**
+ * Design tokens « Rồng Mai » : le dragon de métal et la fleur de mai.
+ *
+ * Deux niveaux :
+ *  1. Les primitives : les couleurs brutes, nommées d'après la palette.
+ *     On ne les utilise presque jamais directement dans les composants.
+ *  2. Les tokens sémantiques : le RÔLE d'une couleur (fond, texte, lien…).
+ *     Ce sont eux qui changent entre le thème clair et le thème sombre.
+ *
+ * Contrastes vérifiés (WCAG) : voir les commentaires à côté de chaque rôle.
+ */
+
+/* ---------- 1. Primitives ---------- */
+:root {
+  /* Feu : le rouge du lì xì */
+  --do-li-xi: #b3261e;
+  --do-tham: #a0221b;
+  --do-nep: #8e1c16;
+  --do-sau: #5f100c; /* rouge profond : ombres et cœur des pétales (décor uniquement) */
+
+  /* Terre : les ors et l'ocre */
+  --vang-mai: #f2b01e;
+  --ngoc: #ffd873;
+  --ngoc-reflet: #fff3cc;
+  --vang-dat: #c08a2e;
+  --vang-kim: #e0b45a;
+  --dong: #7a5216;
+  --nu: #e7b65a;
+  --nau-dam: #5e2a10;
+
+  /* Métal : graphite, acier, argent */
+  --than-chi: #24272b;
+  --tam-thep: #2e3238;
+  --thep: #5e656d;
+  --bac: #c5cad0;
+  --suong: #eef0f2;
+  --trang: #ffffff;
+
+  /* Rideau de fer (décor uniquement) */
+  --rideau-1: #6b7178;
+  --rideau-2: #8a9097;
+  --rideau-3: #a3a9b0;
+  --rideau-bas: #3a3e44;
+
+  /* Typographie */
+  --font-display: 'Archivo Variable', system-ui, sans-serif;
+  --font-body: 'Be Vietnam Pro', system-ui, sans-serif;
+
+  /* Mise en page */
+  --wrap: 1200px;
+  --gutter: 48px;
+  --header-h: 72px;
+  --radius: 6px;
+  --radius-sm: 4px;
+  --radius-pill: 999px; /* bords entièrement arrondis : réservé aux éléments cliquables */
+}
+
+/* ---------- 2. Sémantique : thème clair (par défaut) ---------- */
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: var(--suong);
+  --surface: var(--trang);
+  --text: var(--than-chi); /* 13,1:1 sur --bg */
+  --muted: var(--thep); /* 5,2:1 sur --bg */
+  --heading: var(--do-li-xi); /* 5,7:1 sur --bg */
+  --link: var(--dong); /* 6,0:1 sur --bg */
+  --rule: var(--bac);
+  --rail: var(--thep);
+  --rail-hi: var(--bac);
+  --mark: var(--thep);
+  --btn-bg: var(--than-chi);
+  --btn-text: var(--suong);
+  --done-bg: var(--than-chi);
+  --done-text: var(--suong);
+  --nav-hover: rgb(179 38 30 / 0.08); /* voile rouge très léger sous un lien survolé */
+
+  /* La perle du dragon, le jour : un soleil d'or chaud, halo discret. */
+  --pearl-shine: var(--ngoc-reflet);
+  --pearl-core: var(--ngoc);
+  --pearl-edge: var(--vang-mai);
+  --pearl-rim: var(--dong);
+  --pearl-glow: rgb(242 176 30 / 0.5);
+  --pearl-glow-strength: 0.55; /* 0 = pas de halo, 1 = halo maximal */
+}
+
+/* ---------- 2 bis. Sémantique : thème sombre ---------- */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: var(--than-chi);
+  --surface: var(--tam-thep);
+  --text: var(--suong); /* 13,1:1 */
+  --muted: var(--bac); /* 9,1:1 */
+  --heading: var(--vang-dat); /* 4,9:1, réservé aux grands titres */
+  --link: var(--vang-kim); /* 7,8:1 */
+  --rule: var(--thep);
+  --rail: var(--bac);
+  --rail-hi: var(--thep);
+  --mark: var(--bac);
+  --btn-bg: var(--vang-kim);
+  --btn-text: var(--than-chi);
+  --done-bg: var(--suong);
+  --done-text: var(--than-chi);
+  --nav-hover: rgb(224 180 90 / 0.14); /* voile or sous un lien survolé */
+
+  /* La perle, la nuit : elle devient la lune (« chầu nguyệt »), pâle et rayonnante. */
+  --pearl-shine: var(--trang);
+  --pearl-core: var(--ngoc-reflet);
+  --pearl-edge: var(--vang-kim);
+  --pearl-rim: var(--vang-kim);
+  --pearl-glow: rgb(255 243 204 / 0.8);
+  --pearl-glow-strength: 1;
+}

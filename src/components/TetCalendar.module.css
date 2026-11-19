@@ -1,0 +1,101 @@
+/* align-self: start est indispensable : dans une grille, un élément étiré
+   sur toute la hauteur ne peut pas « coller » (sticky). */
+.calendar {
+  position: sticky;
+  top: calc(var(--header-h) + 40px);
+  align-self: start;
+  display: flex;
+  justify-content: center;
+}
+
+.block {
+  width: 320px;
+  perspective: 900px;
+}
+
+.rings {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  padding-inline: 40px;
+  margin-bottom: -10px;
+}
+
+.rings span {
+  width: 14px;
+  height: 22px;
+  border-radius: 7px;
+  background: var(--thep);
+}
+
+.sheet {
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transform-origin: top center;
+  animation: turn 320ms ease-out;
+}
+
+/* La nouvelle feuille arrive comme une page qu'on rabat. */
+@keyframes turn {
+  from {
+    transform: rotateX(-75deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--do-li-xi);
+  color: var(--suong);
+  font-weight: 500;
+}
+
+.number {
+  padding: 24px 0 8px;
+  font-size: 10.75rem;
+  line-height: 1;
+  font-weight: 800;
+  font-stretch: 125%;
+  text-align: center;
+}
+
+.title {
+  padding: 0 24px 4px;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  font-weight: 500;
+  text-align: center;
+}
+
+.status {
+  padding: 0 24px 24px;
+  color: var(--muted);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.vi {
+  padding: 12px 20px;
+  border-top: 1px dashed var(--rule);
+  color: var(--muted);
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Sur petit écran, la liste suffit : le calendrier disparaît. */
+@media (max-width: 860px) {
+  .calendar {
+    display: none;
+  }
+}

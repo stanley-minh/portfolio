@@ -1,0 +1,207 @@
+.section {
+  padding-block: 96px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  font-stretch: 112%;
+  color: var(--heading);
+}
+
+.intro {
+  margin-top: 16px;
+  max-width: 62ch;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Deux colonnes : la liste (62 caractères max, confortable à lire) et le calendrier. */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 62ch) minmax(0, 1fr);
+  gap: 72px;
+  align-items: start;
+  margin-top: 48px;
+}
+
+.rail {
+  position: relative;
+}
+
+/* La perle : sa position verticale vient de --progress (0 à 1), écrite par useScrollProgress. */
+.pearl {
+  position: absolute;
+  left: 17px;
+  top: calc(var(--progress, 0) * 100%);
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+  margin-top: -11px;
+  border-radius: 50%;
+  /* Mêmes tokens que la grande perle du Hero : soleil le jour, lune la nuit. */
+  background: radial-gradient(
+    circle at 35% 35%,
+    var(--pearl-shine) 0 18%,
+    var(--pearl-core) 42%,
+    var(--pearl-edge) 100%
+  );
+  border: 2px solid var(--pearl-rim);
+  /* Elle grossit un peu à mesure qu'on avance : l'objectif se rapproche.
+     --progress va de 0 (haut du parcours) à 1 (bas). */
+  transform: scale(calc(0.9 + var(--progress, 0) * 0.3));
+  box-shadow: 0 0 calc(4px + 8px * var(--pearl-glow-strength)) var(--pearl-glow);
+  animation: rail-pearl-breathe 3.5s ease-in-out infinite;
+  transition: border-color 0.6s ease;
+  pointer-events: none;
+}
+
+/* Le halo respire, plus fort la nuit (--pearl-glow-strength = 1). */
+@keyframes rail-pearl-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 calc(4px + 6px * var(--pearl-glow-strength)) 0 var(--pearl-glow);
+  }
+  50% {
+    box-shadow: 0 0 calc(8px + 14px * var(--pearl-glow-strength)) calc(2px * var(--pearl-glow-strength)) var(--pearl-glow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pearl {
+    animation: none;
+  }
+}
+
+.steps {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 20px;
+}
+
+.marker {
+  position: relative;
+}
+
+/* Le segment de rail s'étire sur toute la hauteur de l'étape (preserveAspectRatio="none"),
+   et vector-effect garde une épaisseur de trait constante malgré l'étirement. */
+.segment {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  width: 40px;
+  height: 100%;
+}
+
+.segment path {
+  fill: none;
+}
+
+.steel {
+  stroke: var(--rail);
+  stroke-width: 7;
+}
+
+.scales {
+  stroke: var(--rail-hi);
+  stroke-width: 2.5;
+  stroke-dasharray: 5 5;
+}
+
+.dashed {
+  stroke: var(--rail);
+  stroke-width: 3;
+  stroke-dasharray: 8 7;
+}
+
+/* Pastille ronde de la couleur du fond, pour que le rail passe « derrière » le lotus. */
+.badge {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 4px 0 0 4px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.body {
+  padding: 8px 0 64px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.date {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.status {
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.done {
+  background: var(--done-bg);
+  color: var(--done-text);
+}
+
+.now {
+  background: var(--vang-mai);
+  color: var(--than-chi); /* 7,9:1 */
+}
+
+.objective {
+  border: 1.5px dashed var(--text);
+}
+
+.stepTitle {
+  margin-top: 6px;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.place {
+  margin-top: 2px;
+  color: var(--muted);
+}
+
+.text {
+  margin-top: 12px;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+}

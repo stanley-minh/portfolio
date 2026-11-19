@@ -1,0 +1,79 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Les lames du rideau : un dégradé répété toutes les 16 px. */
+.panel {
+  position: absolute;
+  inset: 0;
+  transform: translateY(-100%); /* rangé au-dessus de l'écran au départ */
+  background-color: var(--rideau-1);
+  background-image: repeating-linear-gradient(
+    180deg,
+    var(--rideau-2) 0 6px,
+    var(--thep) 6px 9px,
+    var(--rideau-3) 9px 11px,
+    var(--rideau-1) 11px 16px
+  );
+}
+
+.bar {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 28px;
+  background: var(--rideau-bas);
+  border-top: 2px solid var(--rideau-3);
+}
+
+.handle {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 72px;
+  height: 10px;
+  margin-left: -36px;
+  border-radius: 3px;
+  background: var(--than-chi);
+}
+
+/* Le papier rouge de Tết, posé en losange sur le rideau */
+.paper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 230px;
+  height: 230px;
+  margin: -115px 0 0 -115px;
+  transform: rotate(45deg);
+  border: 4px solid var(--vang-dat);
+  background: var(--do-li-xi);
+}
+
+.paperContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transform: rotate(-45deg);
+}
+
+.name {
+  font-size: 1.875rem;
+  line-height: 1;
+  font-weight: 800;
+  font-stretch: 125%;
+  color: var(--ngoc);
+}
+
+.sign {
+  font-size: 0.9375rem;
+  color: var(--suong);
+}

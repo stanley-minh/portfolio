@@ -1,0 +1,122 @@
+.section {
+  padding-block: 96px;
+  border-top: 1px solid var(--rule);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px;
+  align-items: center;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  font-stretch: 112%;
+  color: var(--heading);
+}
+
+.text {
+  margin-top: 16px;
+  max-width: 44ch;
+}
+
+/* L'enveloppe n'a pas de hauteur fixe : elle grandit avec la carte,
+   donc aucun lien ne peut se retrouver caché derrière la poche. */
+.envelope {
+  position: relative;
+  justify-self: center;
+  width: 100%;
+  max-width: 520px;
+  padding: 84px 0 80px;
+}
+
+.flap {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 240px;
+  height: 150px;
+  background: var(--do-nep);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+.back {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 240px;
+  border-radius: var(--radius);
+  background: var(--do-li-xi);
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  margin-inline: 36px;
+  padding: 22px 24px 64px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.links {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.0625rem;
+}
+
+/* Chaque lien devient une pilule pleine largeur, icône à gauche. */
+.link {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* Le CV, action principale : légèrement séparé des liens de contact. */
+.cv {
+  margin-top: 6px;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* Une adresse e-mail est un long mot sans espace : on autorise la coupure si besoin.
+   `anywhere` (et non `break-word`) réduit aussi la largeur minimale : indispensable dans un flex. */
+.email {
+  overflow-wrap: anywhere;
+}
+
+.pocket {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: var(--do-tham);
+}
+
+/* Le liseré ocre de l'enveloppe */
+.pocket::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1.5px solid var(--vang-dat);
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 860px) {
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .title {
+    font-size: 2.75rem;
+  }
+}
