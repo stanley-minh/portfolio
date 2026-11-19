@@ -1,0 +1,303 @@
+.hero {
+  background: var(--do-li-xi);
+  color: var(--suong); /* 5,7:1 sur le rouge */
+  overflow: hidden; /* la branche déborde volontairement à droite */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  /* Ligne 1 : la salutation, à sa taille. Ligne 2 : le contenu, qui prend la hauteur restante. */
+  grid-template-rows: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  min-height: 640px;
+  padding-block: 56px;
+}
+
+/* La salutation : une ligne à part, en haut, centrée sur toute la largeur du Hero. */
+.hello {
+  grid-column: 1 / -1; /* de la première à la dernière colonne de la grille */
+  justify-self: center;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+  font-weight: 600;
+  font-stretch: 112%;
+  line-height: 1.15;
+}
+
+/* « Xin chào » en or, pour l'accrocher à l'alias vietnamien. */
+.helloVi {
+  color: var(--ngoc); /* 4,8:1 sur le rouge, et texte grand */
+  font-weight: 800;
+}
+
+/*
+  Le texte doré à reflet, partagé par « Stanley Coute » et « Phước Lan ».
+  Les autres classes l'héritent avec `composes` (fonctionnalité des CSS Modules) :
+  une seule définition, deux utilisations.
+*/
+.goldShimmer {
+  color: var(--ngoc); /* repli : 4,8:1 sur le rouge */
+}
+
+/* Dégradé or seulement si le navigateur sait le « découper » dans le texte. */
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .goldShimmer {
+    background: linear-gradient(
+      100deg,
+      var(--vang-mai) 0%,
+      var(--ngoc) 35%,
+      var(--ngoc-reflet) 50%,
+      var(--ngoc) 65%,
+      var(--vang-mai) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* text-shadow ne marche pas sur un texte transparent : drop-shadow suit la forme des lettres. */
+    filter: drop-shadow(0 3px 0 var(--do-nep));
+    animation: reflet-or 7s ease-in-out infinite;
+  }
+}
+
+.name {
+  composes: goldShimmer;
+  /* clamp(min, idéal, max) : la taille suit la largeur d'écran, entre 48 et 104 px.
+     « Stanley Coute » passe sur deux lignes quand la place manque. */
+  /* Un peu d'air en haut et en bas : avec background-clip: text, l'encre qui sort de la boîte disparaît. */
+  padding-block: 0.08em 0.04em;
+  font-size: clamp(3rem, 1rem + 6vw, 6.5rem);
+  line-height: 1;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: 0.01em;
+}
+
+/* Le titre reçoit le focus après un changement de page : pas de contour sur un texte non cliquable. */
+.name:focus {
+  outline: none;
+}
+
+/* Le bloc alias : un petit « sceau » doré sous le nom officiel.
+   « alias » au-dessus, « Phước Lan » en dessous : même ordre à l'écran et à la lecture. */
+.alias {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 20px;
+}
+
+/* « Phước Lan » : grand, en or, avec un reflet qui glisse lentement. */
+.aliasName {
+  composes: goldShimmer;
+  /* padding + line-height généreux : les accents empilés (ướ) débordent vers le haut,
+     et avec background-clip: text tout ce qui sort de la boîte deviendrait invisible. */
+  padding-block: 0.14em 0.04em;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 1rem + 4.5vw, 5rem);
+  line-height: 1.1;
+  font-weight: 800;
+  font-stretch: 112%;
+  letter-spacing: 0.01em;
+}
+
+/* « alias » : petites capitales espacées, encadrées de deux filets dorés. */
+.aliasTag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  /* letter-spacing ajoute aussi un espace après la dernière lettre : on le compense pour rester centré. */
+  margin-right: -0.4em;
+  color: var(--suong); /* 5,7:1 sur le rouge */
+}
+
+.aliasTag::before,
+.aliasTag::after {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--ngoc);
+}
+
+@keyframes reflet-or {
+  0%,
+  100% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+}
+
+/* Respect du réglage système « réduire les animations ». */
+@media (prefers-reduced-motion: reduce) {
+  .aliasName {
+    animation: none;
+  }
+}
+
+.lead {
+  margin-top: 28px;
+  max-width: 30ch;
+  font-size: 1.625rem;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.hook {
+  margin-top: 14px;
+  max-width: 46ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.primary {
+  background: var(--ngoc);
+  color: var(--than-chi); /* 10,9:1 */
+}
+
+.secondary {
+  border-color: var(--suong);
+  color: var(--suong);
+}
+
+/* Sur le rouge (identique dans les deux thèmes), le voile du survol est blanc, pas rouge. */
+.secondary:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.branchSvg {
+  width: 100%;
+  height: auto;
+  overflow: visible; /* le corps du dragon entre depuis le bord de l'écran */
+}
+
+/* ---------- La perle du dragon (DragonBranch) ---------- */
+
+/* transform-box: fill-box → l'origine « center » est le centre de l'élément lui-même,
+   pas celui du SVG entier (comportement par défaut en SVG). */
+.pearlFloat,
+.pearlHalo,
+.pearlRing {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Elle flotte doucement devant le dragon. */
+.pearlFloat {
+  animation: pearl-float 6s ease-in-out infinite;
+}
+
+/* Le halo respire ; son intensité dépend du thème (--pearl-glow-strength). */
+.pearlHalo {
+  opacity: var(--pearl-glow-strength);
+  animation: pearl-breathe 4s ease-in-out infinite;
+  transition: opacity 0.6s ease;
+}
+
+/* Le cercle pointillé tourne lentement, comme une orbite. */
+.pearlRing {
+  stroke: var(--pearl-edge);
+  animation: pearl-orbit 30s linear infinite;
+  transition: stroke 0.6s ease;
+}
+
+.pearlBody {
+  stroke: var(--pearl-rim);
+  transition: stroke 0.6s ease;
+}
+
+.pearlShine {
+  fill: var(--pearl-shine);
+  transition: fill 0.6s ease;
+}
+
+/* Les trois arcs de rayonnement scintillent en décalé avec le halo. */
+.pearlRays {
+  stroke: var(--pearl-edge);
+  animation: pearl-twinkle 4s ease-in-out infinite;
+  transition: stroke 0.6s ease;
+}
+
+/* Bascule de thème en fondu : les couleurs des dégradés changent en douceur. */
+.pearlStop {
+  transition: stop-color 0.6s ease;
+}
+
+@keyframes pearl-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pearl-breathe {
+  0%,
+  100% {
+    transform: scale(0.88);
+    opacity: calc(var(--pearl-glow-strength) * 0.7);
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: var(--pearl-glow-strength);
+  }
+}
+
+@keyframes pearl-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pearl-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pearlFloat,
+  .pearlHalo,
+  .pearlRing,
+  .pearlRays {
+    animation: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    min-height: 0;
+  }
+
+  .lead {
+    font-size: 1.375rem;
+  }
+
+  .branch {
+    max-width: 320px;
+    margin-left: auto;
+  }
+}

@@ -1,0 +1,144 @@
+/* ---------- La barre ---------- */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg); /* repli : fond plein */
+  box-shadow: 0 8px 24px -18px rgb(0 0 0 / 0.5);
+}
+
+/*
+  Effet « verre dépoli » : fond semi-transparent + flou de ce qui passe dessous.
+  Pourquoi un @supports ? `color-mix(… var(--bg) …)` contient une variable : le navigateur
+  ne peut pas le rejeter à la lecture. S'il ne connaît pas color-mix, la valeur devient
+  invalide plus tard et le fond tombe à… transparent, sans flou. Le @supports l'évite.
+*/
+@supports (backdrop-filter: blur(1px)) and (background: color-mix(in srgb, red 50%, transparent)) {
+  .header {
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(1.4);
+  }
+}
+
+/* Un filet doré qui s'efface vers les bords, à la place d'une bordure grise. */
+.header::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--vang-mai) 20%, var(--vang-kim) 80%, transparent);
+  opacity: 0.8;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  min-height: var(--header-h);
+}
+
+/* ---------- Le nom ---------- */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+  font-stretch: 125%;
+  font-size: 1.375rem;
+  letter-spacing: 0.03em;
+  color: var(--heading);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.brand:hover {
+  background: var(--nav-hover);
+}
+
+/* Le lotus tourne d'un huitième de tour au survol : ses 8 pétales retombent pile en place. */
+.brandIcon {
+  display: inline-flex;
+  transition: transform 0.5s ease;
+}
+
+.brand:hover .brandIcon {
+  transform: rotate(45deg);
+}
+
+/* ---------- Les liens et boutons ---------- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Les ancres sont regroupées dans une seule « gélule ». */
+.links {
+  display: flex;
+  gap: 4px;
+  margin: 0 8px 0 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.links a:hover {
+  background: var(--nav-hover);
+  color: var(--heading);
+}
+
+/* L'icône de thème fait un demi-tour au survol (soleil ↔ lune).
+   La taille et le mouvement des autres icônes sont dans global.css (classe .icon). */
+.theme svg {
+  transition: transform 0.5s ease;
+}
+
+.theme:hover svg {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brandIcon,
+  .theme svg {
+    transition: none;
+  }
+
+  .brand:hover .brandIcon,
+  .theme:hover svg {
+    transform: none;
+  }
+}
+
+/* Sur mobile, on garde seulement le nom et le bouton de thème :
+   le CV est aussi dans la section contact. */
+@media (max-width: 860px) {
+  .links,
+  .cv {
+    display: none;
+  }
+}
