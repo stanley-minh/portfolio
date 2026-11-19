@@ -49,10 +49,16 @@ npm run lint     # analyse du code (oxlint)
 - Les statuts du parcours sont donnés par une forme et un mot, jamais par la couleur seule.
 - Le réglage système « réduire les animations » coupe le défilement doux, l'animation d'entrée et le rideau.
 
-## Déploiement
+## Intégration et déploiement continus
 
-Chaque push sur `main` lance [le workflow GitHub Actions](.github/workflows/deploy.yml) :
-`npm ci` → lint → build → publication sur GitHub Pages. Si une étape échoue, rien n'est publié.
+| Workflow | Quand | Ce qu'il fait |
+| --- | --- | --- |
+| [CI](.github/workflows/ci.yml) | Chaque pull request | `npm ci` → lint → build, **sans déployer** |
+| [Déploiement](.github/workflows/deploy.yml) | Chaque push sur `main` | `npm ci` → lint → build → publication sur GitHub Pages |
+
+`main` est protégée par une règle (*Settings → Rules*) : une PR ne peut être fusionnée que si le
+check « Lint et build » est vert, et `main` refuse les push forcés et la suppression.
+Si une étape du déploiement échoue, rien n'est publié.
 
 Le site est servi sous `/portfolio/` : c'est la valeur de `base` dans [vite.config.ts](vite.config.ts).
 Les chemins vers `public/` passent donc par `import.meta.env.BASE_URL`, jamais par un `/` absolu.

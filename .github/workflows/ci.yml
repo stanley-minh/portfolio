@@ -1,0 +1,37 @@
+name: CI
+
+# Vérifie chaque pull request AVANT la fusion : lint + build, sans rien déployer.
+# Le déploiement reste dans deploy.yml, qui ne tourne qu'après la fusion sur main.
+on:
+  pull_request:
+  workflow_dispatch:
+
+# Ce workflow ne fait que lire le code : aucun droit d'écriture (moindre privilège).
+permissions:
+  contents: read
+
+# Si tu pousses deux commits d'affilée sur la même PR, la vérification du premier
+# est annulée : seul le dernier état de la PR compte.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    # Ce nom est celui du « status check » exigé par la règle de protection de main.
+    # Le renommer = mettre à jour la règle (Settings → Rules), sinon plus aucune PR ne pourra être fusionnée.
+    name: Lint et build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm run build # tsc -b (types) puis vite build
