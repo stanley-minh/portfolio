@@ -86,8 +86,14 @@ export default function App() {
     if (section) {
       // Lenis comme scrollIntoView tiennent compte de scroll-margin-top (global.css) :
       // la section arrive sous l'en-tête collant, pas dessous.
-      if (lenis) lenis.scrollTo(section, { immediate: true, force: true });
-      else section.scrollIntoView();
+      if (lenis) {
+        // Lenis garde en mémoire la hauteur de la page quittée (l'étude de cas, plus courte)
+        // jusqu'à son prochain recalcul : sans resize(), il s'arrêterait avant la section.
+        lenis.resize();
+        lenis.scrollTo(section, { immediate: true, force: true });
+      } else {
+        section.scrollIntoView();
+      }
       section.querySelector<HTMLElement>('[data-return-focus]')?.focus({ preventScroll: true });
     } else {
       if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
