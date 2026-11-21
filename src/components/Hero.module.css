@@ -153,8 +153,59 @@
   font-weight: 500;
 }
 
+/*
+  La recherche d'alternance : un encart cerclé d'or, juste sous la présentation.
+  Le voile sombre renforce le contraste : ngoc passe au-dessus de 4,8:1 et suong au-dessus de 5,7:1.
+*/
+.availability {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 46ch;
+  margin-top: 22px;
+  padding: 14px 20px 14px 16px;
+  border: 1px solid var(--ngoc);
+  border-radius: var(--radius);
+  background: rgb(0 0 0 / 0.14);
+}
+
+.availabilityTitle {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--ngoc);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+/* Le point « disponible » : il pulse doucement, comme un statut en ligne. */
+.availabilityDot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  margin-top: 0.5em;
+  border-radius: 50%;
+  background: var(--ngoc);
+  animation: dispo-pulse 2.4s ease-out infinite;
+}
+
+@keyframes dispo-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(255 216 115 / 0.7);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 10px rgb(255 216 115 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .availabilityDot {
+    animation: none;
+  }
+}
+
 .hook {
-  margin-top: 14px;
+  margin-top: 18px;
   max-width: 46ch;
 }
 

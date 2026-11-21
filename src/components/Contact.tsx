@@ -1,4 +1,4 @@
-import { CONTACT, prettyUrl } from '../data/site';
+import { ALTERNANCE, CONTACT, prettyUrl } from '../data/site';
 import { CodeIcon, DownloadIcon, MailIcon, ProfileIcon } from './Icons';
 import { LotusIcon } from './LotusSymbols';
 import styles from './Contact.module.css';
@@ -17,7 +17,8 @@ export function Contact() {
             Me contacter
           </h2>
           <p className={styles.text}>
-            Je recherche une entreprise pour préparer le titre DWWM en alternance. N'hésitez pas à me contacter.
+            Je recherche une entreprise pour préparer le titre {ALTERNANCE.diploma} en alternance, à {ALTERNANCE.city},{' '}
+            {ALTERNANCE.start}, au rythme de {ALTERNANCE.rhythm}. N'hésitez pas à me contacter.
           </p>
         </div>
 
