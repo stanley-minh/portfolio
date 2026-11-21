@@ -48,6 +48,8 @@ npm run lint     # analyse du code (oxlint)
 - Contrastes conformes WCAG AA, en thème clair comme en thème sombre.
 - Les statuts du parcours sont donnés par une forme et un mot, jamais par la couleur seule.
 - Le réglage système « réduire les animations » coupe le défilement doux, l'animation d'entrée et le rideau.
+- Sans JavaScript, un bloc `<noscript>` d'[index.html](index.html) donne l'essentiel : nom, recherche d'alternance, contact et CV.
+- Une adresse inconnue mène à [public/404.html](public/404.html), servie par GitHub Pages.
 
 ## Intégration et déploiement continus
 
