@@ -31,7 +31,7 @@ export const STATUS_LABEL: Record<StepStatus, string> = {
 export const STEPS: Step[] = [
   {
     date: '2025',
-    title: 'Martinique',
+    title: 'De la Martinique à Toulouse',
     place: 'Point de départ',
     text: 'Martiniquais d’origine vietnamienne. En octobre 2025, à Toulouse, je découvre le code.',
     status: 'done',
@@ -42,10 +42,19 @@ export const STEPS: Step[] = [
     date: '2026',
     title: 'CS50, Harvard (en ligne)',
     place: 'Formation en ligne',
-    text: 'Les fondamentaux de l’algorithmique et de la programmation.',
-    status: 'done',
-    skills: ['Algorithmique', 'C', 'Python'],
+    text: 'Les fondamentaux de l’algorithmique et de la programmation, en C, en Python et en SQL.',
+    status: 'now',
+    skills: ['Algorithmique', 'C', 'Python', 'SQL'],
     vi: 'Học lập trình',
+  },
+  {
+    date: 'Sept.–oct. 2026',
+    title: 'Stage développeur web',
+    place: 'OPTIQUAL Lab',
+    text: 'Ma première expérience en équipe, avec des pull requests vers la branche de recette. Dans la liste des prestataires, j’ai remplacé la distance par un indicateur de disponibilité, et j’ai construit le formulaire de candidature en 5 étapes.',
+    status: 'done',
+    skills: ['Next.js', 'React', 'TypeScript', 'Symfony', 'Docker'],
+    vi: 'Thực tập', // stage
   },
   {
     date: '2026',
