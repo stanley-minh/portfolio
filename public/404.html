@@ -1,0 +1,63 @@
+<!doctype html>
+<!--
+  Page 404 : GitHub Pages la sert pour toute adresse inconnue sous /portfolio/.
+  Copiée telle quelle depuis public/ (Vite ne la transforme pas) : chemins écrits en dur,
+  styles intégrés, aucune dépendance au build. Couleurs : celles du hero (src/styles/tokens.css).
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Page introuvable · Stanley Coute</title>
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+    <style>
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 24px;
+        box-sizing: border-box;
+        background: #b3261e;
+        color: #eef0f2; /* 5,7:1 sur le rouge */
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        text-align: center;
+      }
+      h1 {
+        margin: 16px 0 8px;
+        color: #ffd873; /* 4,8:1, texte grand */
+        font-size: clamp(3rem, 12vw, 6rem);
+        line-height: 1;
+      }
+      p {
+        margin: 0 0 32px;
+        font-size: 1.25rem;
+      }
+      a {
+        display: inline-block;
+        padding: 14px 28px;
+        border-radius: 999px;
+        background: #ffd873;
+        color: #24272b; /* 10,9:1 */
+        font-weight: 600;
+        text-decoration: none;
+      }
+      a:hover {
+        background: #fff3cc;
+      }
+      a:focus-visible {
+        outline: 3px solid #eef0f2;
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/portfolio/favicon.svg" width="72" height="72" alt="" />
+      <h1>404</h1>
+      <p>Cette page n'existe pas, ou plus.</p>
+      <a href="/portfolio/">Retour à l'accueil</a>
+    </main>
+  </body>
+</html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Stanley Coute, alias Phước Lan, développeur web full-stack en formation : parcours, projets et contact."
+      content="Stanley Coute, alias Phước Lan, développeur web full-stack en formation, en recherche d'alternance DWWM à Toulouse : parcours, projets et contact."
     />
     <meta name="theme-color" content="#B3261E" />
     <title>Stanley Coute (Phước Lan) · Développeur web full-stack</title>
@@ -50,6 +50,27 @@
     </script>
   </head>
   <body>
+    <!--
+      Sans JavaScript (bloqué, ou outil qui lit la page sans l'exécuter), React n'affiche rien :
+      ce bloc donne l'essentiel. Les infos d'alternance doublent ALTERNANCE (src/data/site.ts).
+      Le CSS du site est chargé par une balise <link>, il s'applique donc aussi ici.
+    -->
+    <noscript>
+      <main class="wrap" style="padding-block: 48px">
+        <h1>Stanley Coute (Phước Lan)</h1>
+        <p>Développeur web full-stack en formation.</p>
+        <p>
+          <strong>Je cherche une alternance DWWM</strong> à Toulouse, dès maintenant, au rythme de 4 jours en
+          entreprise et 1 jour en formation.
+        </p>
+        <ul>
+          <li><a href="mailto:stanleybullet.pro@gmail.com">stanleybullet.pro@gmail.com</a></li>
+          <li><a href="%BASE_URL%cv.pdf">Télécharger le CV (PDF)</a></li>
+          <li><a href="https://github.com/stanley-minh">GitHub</a> · <a href="https://www.linkedin.com/in/stancte">LinkedIn</a></li>
+        </ul>
+        <p>Activez JavaScript pour voir le site complet&nbsp;: parcours, projets et étude de cas.</p>
+      </main>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
