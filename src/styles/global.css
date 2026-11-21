@@ -233,6 +233,7 @@ main[id] {
 @media (max-width: 860px) {
   :root {
     --gutter: 20px;
+    --header-h: 60px; /* en-tête sur une ligne (Header.module.css) */
   }
 }
 

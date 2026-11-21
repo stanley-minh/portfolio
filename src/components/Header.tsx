@@ -47,18 +47,18 @@ export function Header({ isHome, theme, onToggleTheme, onGoHome, onBack }: Heade
               <li><a href="#contact">Contact</a></li>
             </ul>
           ) : (
-            <button type="button" className="btn btn--outline" onClick={onBack}>
+            <button type="button" className={`btn btn--outline ${styles.iconBtn}`} onClick={onBack}>
               <ArrowLeftIcon />
-              Retour aux projets
+              <span className={styles.label}>Retour aux projets</span>
             </button>
           )}
-          <button type="button" className={`btn btn--ghost ${styles.theme}`} onClick={onToggleTheme}>
+          <button type="button" className={`btn btn--ghost ${styles.theme} ${styles.iconBtn}`} onClick={onToggleTheme}>
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-            {theme === 'dark' ? 'Thème clair' : 'Thème sombre'}
+            <span className={styles.label}>{theme === 'dark' ? 'Thème clair' : 'Thème sombre'}</span>
           </button>
-          <a href={CONTACT.cv} className={`btn btn--dark ${styles.cv}`} download>
+          <a href={CONTACT.cv} className={`btn btn--dark ${styles.iconBtn}`} download>
             <DownloadIcon />
-            Télécharger le CV
+            <span className={styles.label}>Télécharger le CV</span>
           </a>
         </nav>
       </div>
