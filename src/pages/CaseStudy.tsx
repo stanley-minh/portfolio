@@ -41,6 +41,9 @@ export function CaseStudy({ onBack }: CaseStudyProps) {
           ))}
         </ul>
 
+        <h2 className={styles.h2}>Où en est le projet</h2>
+        <p className={styles.p}>{project.caseStudy.status}</p>
+
         <div className={styles.footer}>
           <a href={import.meta.env.BASE_URL} className="btn btn--outline" onClick={handleBack}>
             <ArrowLeftIcon />
