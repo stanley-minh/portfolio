@@ -45,9 +45,10 @@ export function CaseStudy({ onBack }: CaseStudyProps) {
         <p className={styles.p}>{project.caseStudy.status}</p>
 
         <div className={styles.footer}>
-          <a href={import.meta.env.BASE_URL} className="btn btn--outline" onClick={handleBack}>
+          {/* Ouvert dans un nouvel onglet, le lien mène aussi à la section Projets. */}
+          <a href={`${import.meta.env.BASE_URL}#projets`} className="btn btn--outline" onClick={handleBack}>
             <ArrowLeftIcon />
-            Retour à l'accueil
+            Retour aux projets
           </a>
           <a href={project.repo} className="btn btn--ghost">
             <CodeIcon />

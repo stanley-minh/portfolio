@@ -9,7 +9,10 @@ interface HeaderProps {
   isHome: boolean;
   theme: Theme;
   onToggleTheme: () => void;
+  /** Le nom : retour en haut de l'accueil. */
   onGoHome: () => void;
+  /** Le bouton « Retour aux projets » de l'étude de cas : retour à la section Projets. */
+  onBack: () => void;
 }
 
 /**
@@ -19,7 +22,7 @@ interface HeaderProps {
  * On n'ajoute pas `aria-pressed` : avec un libellé qui change, le lecteur
  * d'écran entendrait deux informations contradictoires.
  */
-export function Header({ isHome, theme, onToggleTheme, onGoHome }: HeaderProps) {
+export function Header({ isHome, theme, onToggleTheme, onGoHome, onBack }: HeaderProps) {
   // Sur l'étude de cas, le nom ramène à l'accueil avec la transition.
   const handleBrandClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (isHome) return; // sur l'accueil, l'ancre #haut fait déjà le travail
@@ -44,9 +47,9 @@ export function Header({ isHome, theme, onToggleTheme, onGoHome }: HeaderProps) 
               <li><a href="#contact">Contact</a></li>
             </ul>
           ) : (
-            <button type="button" className="btn btn--outline" onClick={onGoHome}>
+            <button type="button" className="btn btn--outline" onClick={onBack}>
               <ArrowLeftIcon />
-              Retour à l'accueil
+              Retour aux projets
             </button>
           )}
           <button type="button" className={`btn btn--ghost ${styles.theme}`} onClick={onToggleTheme}>
