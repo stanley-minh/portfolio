@@ -43,8 +43,15 @@ function subscribe(onChange: () => void) {
 export function useRoute() {
   const route = useSyncExternalStore(subscribe, readRoute, () => 'home' as Route);
 
-  const navigate = useCallback((to: Route) => {
-    const url = ROUTE_HASH[to] || window.location.pathname + window.location.search;
+  /**
+   * Change de page sans recharger.
+   * @param to la page visée
+   * @param section sur l'accueil, l'id de la section où arriver (ex. « projets ») :
+   *   l'adresse devient …/portfolio/#projets, que readRoute() lit bien comme l'accueil.
+   */
+  const navigate = useCallback((to: Route, section?: string) => {
+    const home = window.location.pathname + window.location.search + (section ? `#${section}` : '');
+    const url = ROUTE_HASH[to] || home;
     window.history.pushState(null, '', url);
     listeners.forEach((notify) => notify());
   }, []);

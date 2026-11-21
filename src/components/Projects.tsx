@@ -37,7 +37,13 @@ export function Projects({ onOpenCase }: ProjectsProps) {
               ))}
             </ul>
             <div className={styles.actions}>
-              <a href={`#/projets/${project.slug}`} className="btn btn--red" onClick={handleOpen}>
+              {/* data-return-focus : au retour de l'étude de cas, le focus revient ici (voir App.tsx). */}
+              <a
+                href={`#/projets/${project.slug}`}
+                className="btn btn--red"
+                onClick={handleOpen}
+                data-return-focus
+              >
                 Lire l'étude de cas
                 <ArrowRightIcon />
               </a>
