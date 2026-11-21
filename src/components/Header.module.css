@@ -134,11 +134,51 @@
   }
 }
 
-/* Sur mobile, on garde seulement le nom et le bouton de thème :
-   le CV est aussi dans la section contact. */
+/*
+  Sur mobile, l'en-tête tient sur UNE ligne : le nom, puis des boutons réduits à leur icône
+  (retour, thème, CV). Leur texte reste dans le bouton, masqué à l'écran comme .sr-only :
+  c'est lui qui donne son nom au bouton pour les lecteurs d'écran.
+  Les ancres (Parcours, Projets, Contact) disparaissent : on y arrive en défilant.
+  La hauteur de la barre (--header-h) passe à 60 px dans global.css.
+*/
 @media (max-width: 860px) {
-  .links,
-  .cv {
+  .links {
     display: none;
+  }
+
+  .inner,
+  .nav {
+    gap: 6px;
+  }
+
+  /* Nom + 3 boutons sur 360 px de large (Android courant) : le nom se fait un peu plus petit.
+     Plus étroit encore, la barre passe sur deux lignes (flex-wrap) au lieu de déborder. */
+  .brand {
+    gap: 8px;
+    padding: 4px 8px 4px 4px;
+    font-size: 1.0625rem;
+  }
+
+  .brandIcon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* 44 × 44 px : la taille de cible tactile recommandée. */
+  .iconBtn {
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }
