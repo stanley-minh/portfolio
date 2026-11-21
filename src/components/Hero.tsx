@@ -1,4 +1,4 @@
-import { IDENTITY } from '../data/site';
+import { ALTERNANCE, IDENTITY } from '../data/site';
 import { DragonBranch } from './DragonBranch';
 import { ArrowDownIcon, MailIcon } from './Icons';
 import styles from './Hero.module.css';
@@ -29,12 +29,21 @@ export function Hero() {
             </span>
           </p>
           <p className={styles.lead}>
-            Martiniquais d'origine vietnamienne, je conçois des applications web, du{' '}
+            Développeur web <span className="nowrap">full-stack</span> en formation, je conçois des applications web, du{' '}
             <span className="nowrap">front-end</span> au <span className="nowrap">back-end</span>.
           </p>
+          {/* Ce qu'un recruteur cherche en premier : quoi, où, quand, à quel rythme. */}
+          <p className={styles.availability}>
+            <span className={styles.availabilityDot} aria-hidden="true" />
+            <span>
+              {/* L'espace après <strong> sépare les deux phrases pour les lecteurs d'écran. */}
+              <strong className={styles.availabilityTitle}>Je cherche une alternance {ALTERNANCE.diploma}</strong>{' '}
+              À {ALTERNANCE.city}, {ALTERNANCE.start}, au rythme de {ALTERNANCE.rhythm}.
+            </span>
+          </p>
           <p className={styles.hook}>
-            J'ai écrit ma première ligne de code à Toulouse, en octobre 2025. Depuis, je construis des applications utiles
-            à mon entourage, comme mon suivi de dépenses.
+            Martiniquais d'origine vietnamienne, j'ai écrit ma première ligne de code à Toulouse, en octobre 2025. Depuis, je
+            construis des applications utiles à mon entourage, comme mon suivi de dépenses.
           </p>
           <div className={styles.actions}>
             <a href="#parcours" className={`btn ${styles.primary}`}>

@@ -10,6 +10,18 @@ export const IDENTITY = {
   alias: 'Phước Lan',
 } as const;
 
+/**
+ * La recherche d'alternance. Reprise par le Hero, le Parcours et le Contact :
+ * quand la situation change, on ne modifie que cet objet
+ * (et le bloc <noscript> d'index.html, qui ne peut pas l'importer).
+ */
+export const ALTERNANCE = {
+  diploma: 'DWWM',
+  city: 'Toulouse',
+  start: 'dès maintenant',
+  rhythm: '4 jours en entreprise et 1 jour en formation',
+} as const;
+
 export const CONTACT = {
   email: 'stanleybullet.pro@gmail.com',
   github: 'https://github.com/stanley-minh',

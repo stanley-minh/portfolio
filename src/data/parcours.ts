@@ -3,6 +3,7 @@
  * Le composant <Parcours> se contente d'afficher ce tableau :
  * pour modifier le contenu, on ne touche qu'à ce fichier.
  */
+import { ALTERNANCE } from './site';
 
 /** Statut d'une étape. Il est toujours dit par une forme ET un mot, jamais par la couleur seule. */
 export type StepStatus = 'done' | 'now' | 'objective';
@@ -50,7 +51,7 @@ export const STEPS: Step[] = [
     date: '2026',
     title: 'Titre professionnel DWWM, en alternance',
     place: 'Studi',
-    text: 'Développeur web et web mobile, niveau bac+2. Je recherche une entreprise d’accueil.',
+    text: `Développeur web et web mobile, niveau bac+2. Je recherche une entreprise d’accueil à ${ALTERNANCE.city}, ${ALTERNANCE.start}, au rythme de ${ALTERNANCE.rhythm}.`,
     status: 'now',
     skills: ['React', 'Node.js', 'PHP', 'SQL'],
     vi: 'Đang học',
