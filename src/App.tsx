@@ -66,6 +66,14 @@ export default function App() {
     [route, navigate, reduced],
   );
 
+  // Lien partagé vers une section (…/portfolio/#parcours) : le navigateur a cherché
+  // la section en lisant le HTML, qui ne contient que <div id="root">, avant que React
+  // ne la crée. Il ne l'a pas trouvée : on défile nous-mêmes, une fois, au premier affichage.
+  // scrollIntoView tient compte de scroll-margin-top (la section arrive sous l'en-tête).
+  useEffect(() => {
+    sectionFromHash()?.scrollIntoView();
+  }, []); // [] : une seule fois, au montage
+
   // Le titre de l'onglet suit la page, Y COMPRIS au premier affichage
   // (lien partagé vers l'étude de cas, page rechargée) : pas de garde ici.
   useEffect(() => {
